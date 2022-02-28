@@ -33,6 +33,3 @@ def tearDown():
         print(f'Test completed at: {datetime.datetime.now()}')
         driver.close()
         driver.quit()
-
-setUp()
-tearDown()
