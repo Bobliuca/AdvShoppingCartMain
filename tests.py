@@ -1,5 +1,5 @@
 import unittest
-import methods
+import adshopcart_methods as methods
 import adshopcart_locators as locators
 
 
@@ -8,4 +8,10 @@ class AdShopCartPositiveTestCase(unittest.TestCase):
     @staticmethod
     def test_adshopcart():
         methods.setUp()
+        methods.create_new_user()
+        methods.log_out()
+        methods.log_in()
+        methods.delete_a_new_user()
+        methods.check_user_deleted()
+        methods.tearDown()
         methods.tearDown()
