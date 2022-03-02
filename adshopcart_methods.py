@@ -97,7 +97,7 @@ def check_user_created():
 
 def log_out():
     driver.find_element(By.ID, 'menuUser').click()
-    sleep(0.25)
+    sleep(1)
     # driver.find_element(By.XPATH, "//div[@label='Sign_out')]").click()
     # driver.find_element(By.XPATH, "//label[contains(.,'Sign_out')]").click()
     driver.find_element(By.XPATH, '//*[@id="loginMiniTitle"]/label[3]').click()
@@ -147,7 +147,7 @@ def check_user_deleted():
         driver.find_element(By.ID, 'sign_in_btnundefined').click()
         sleep(0.25)
         if driver.find_element(By.ID, 'signInResultMessage'):
-            print(f'User "{locators.new_username}" is deleted! at {datetime.datetime.now()}.')
+            print(f'The User "{locators.new_username}" has deleted! .')
 
     # breakpoint()
 
