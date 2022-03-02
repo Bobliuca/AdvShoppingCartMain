@@ -14,4 +14,3 @@ class AdShopCartPositiveTestCase(unittest.TestCase):
         methods.delete_a_new_user()
         methods.check_user_deleted()
         methods.tearDown()
-        methods.tearDown()

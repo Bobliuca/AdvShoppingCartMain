@@ -24,3 +24,10 @@ address = fake.address()
 # address = fake.address().replace("\n", "")
 province = fake.province()
 
+
+# old_username = fake.user_name()
+# new_username = old_username[0:14]
+# old_username = fake. user_name()
+# if len(old_username) >= 6:
+#     old_username = old_username[0:6]
+
