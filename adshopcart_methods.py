@@ -113,7 +113,7 @@ def log_out():
     else:
         print(f'!!!!!!!!!!!"{locators.new_username}" is not successfully logout at: {datetime.datetime.now()}!')
 
-# log_in(locators.moodle_username, locators.moodle_password)
+
 
 
 def log_in():

@@ -11,7 +11,7 @@ last_name = fake.last_name()
 full_name = f'{first_name} {last_name}'
 email = fake.email()
 
-city = fake.city()  #country = fake.country() 任意国家 #country= fake.current_country() 当前国家
+city = fake.city()
 pic_desc = fake.user_name()
 phonetic_name = fake.user_name()
 list_of_interests = [new_username, new_password, full_name, email, city]
