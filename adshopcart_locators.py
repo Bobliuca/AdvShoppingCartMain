@@ -2,11 +2,8 @@ from faker import Faker
 
 fake = Faker(locale='en_CA')
 adshopcart_url = 'https://advantageonlineshopping.com/#/'
-# adshopcart_login_url = 'http://52.39.5.126/login/index.php'
 adshopcart_users_main_page = 'https://advantageonlineshopping.com/#/myAccount'
-# adshopcart_username = 'boliu'
-# adshopcart_password = 'Nerdca78*'
-# adshopcart_dashboard_url = 'http://52.39.5.126/my/'
+description = fake.sentence(nb_words=20)
 new_username = fake.user_name()
 new_password = fake.password()
 first_name = fake.first_name()

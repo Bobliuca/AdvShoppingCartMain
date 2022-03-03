@@ -8,10 +8,10 @@ from selenium.webdriver.support.ui import Select
 
 from selenium.webdriver.common.keys import Keys
 
-driver = webdriver.Chrome(r'C:\Users\asus\PycharmProjects\python-cctb\chromedriver.exe')
+driver = webdriver.Chrome(r':\Users\asus\PycharmProjects\python-cctb\chromedriver.exe')
 
-# s = Service(executable_path='./chromedriver')
-# driver = webdriver.Chrome(service=s)
+s = Service(executable_path='./chromedriver')
+driver = webdriver.Chrome(service=s)
 
 def setUp():
 
