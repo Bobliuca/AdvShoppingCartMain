@@ -4,6 +4,7 @@ import adshopcart_locators as locators
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import Select
 
 from selenium.webdriver.common.keys import Keys
 
@@ -72,42 +73,45 @@ def create_new_user():
     # sleep(0.25)
     if not driver.find_element(By.ID, 'register_btnundefined').click():
         driver.find_element(By.NAME, 'i_agree').click()
-        sleep(0.25)
+        sleep(1)
+    else:
+        print('register failed! check your code.')
+
     driver.find_element(By.ID, 'register_btnundefined').click()
-    sleep(0.25)
+    sleep(1)
+
 
 
 def check_user_created():
     driver.find_element(By.ID, 'menuUser').click()
-    sleep(0.25)
-    driver.find_element(By.LINK_TEXT, 'My account').click()
-    sleep(0.25)
+    sleep(1)
+    driver.find_element(By.XPATH, '//*[@id="loginMiniTitle"]/label[1]').click()
+    sleep(0.8)
     if driver.current_url == locators.adshopcart_users_main_page:
-        assert driver.find_element(By.CLASS_NAME, 'MY_ACCOUNT').is_displayed()
+        assert driver.find_element(By.ID, 'myAccountContainer').is_displayed()
         sleep(0.25)
-        # driver.find_element(By.XPATH, "//label[contains(.,'Confirm password')]")
-        if driver.find_element(By.XPATH, f'//td[contains(., "{locators.first_name}")]'):
-            print(f'Welcome! New User "{locators.first_name}" "{locators.last_name}" is created!')
+        print('User is created!')
+        if driver.find_element(By.XPATH, f'//label[contains(., "{locators.first_name}")]'):
+            print(f'New User "{locators.first_name}" "{locators.last_name}" is created!')
+            print('--- Test Scenario: Check user created --- is passed')
     driver.find_element(By.ID, 'menuUser').click()
     sleep(0.25)
-    driver.find_element(By.LINK_TEXT, 'My orders').click()
-    sleep(.25)
+    driver.find_element(By.XPATH, '//*[@id="loginMiniTitle"]/label[2]').click()
+    sleep(.5)
     if driver.find_element(By.XPATH, "//label[contains(.,'- No orders -')]").is_displayed():
         print(f' --- NO ORDERS ---')
 
 def log_out():
     driver.find_element(By.ID, 'menuUser').click()
-    sleep(1)
-    # driver.find_element(By.XPATH, "//div[@label='Sign_out')]").click()
-    # driver.find_element(By.XPATH, "//label[contains(.,'Sign_out')]").click()
+    sleep(1.5)
     driver.find_element(By.XPATH, '//*[@id="loginMiniTitle"]/label[3]').click()
-    sleep(0.5)
+    sleep(1.5)
     driver.find_element(By.ID, 'menuUser').click()
     sleep(3)
     if driver.find_element(By.ID, 'sign_in_btnundefined').is_displayed():
         print(f'"{locators.new_username}" is successfully logout at: {datetime.datetime.now()}!')
     else:
-        print(f'"{locators.new_username}" is not successfully logout at: {datetime.datetime.now()}!')
+        print(f'!!!!!!!!!!!"{locators.new_username}" is not successfully logout at: {datetime.datetime.now()}!')
 
 # log_in(locators.moodle_username, locators.moodle_password)
 
@@ -122,34 +126,57 @@ def log_in():
         driver.find_element(By.NAME, 'password').send_keys(locators.new_password)
         sleep(0.25)
         driver.find_element(By.ID, 'sign_in_btnundefined').click()
-        sleep(0.25)
+        sleep(1)
 
 def delete_a_new_user():
     driver.find_element(By.ID, 'menuUser').click()
-    sleep(0.25)
+    sleep(1)
     driver.find_element(By.XPATH, '//*[@id="loginMiniTitle"]/label[1]').click()
-    sleep(0.25)
+    sleep(1)
     if driver.current_url == locators.adshopcart_users_main_page:
-        assert driver.find_element(By.CLASS_NAME, 'MY_ACCOUNT').is_displayed()
+        assert driver.find_element(By.CLASS_NAME, 'deleteBtnText').is_displayed()
         sleep(0.25)
         driver.find_element(By.CLASS_NAME, 'deleteBtnText').click()
-        print(f'-------New user is deleted. at {datetime.datetime.now()}! ')
+        sleep(1.5)
+        if driver.find_element(By.ID, 'deleteAccountPopup').is_displayed():
+            driver.find_element(By.XPATH, '//*[@id="deleteAccountPopup"]/div[3]/div[1]').click()
+            print(f'-------New user is deleted.')
+        else:
+            print('!!!!!!!!!!!!!!!New user deleted failed.' )
+    sleep(1.5)
+
 
 def check_user_deleted():
     driver.get(locators.adshopcart_url)
+    sleep(1.5)
     if driver.current_url == locators.adshopcart_url:
         driver.find_element(By.ID, 'menuUser').click()
-        sleep(2)
+        sleep(1)
+        assert driver.find_element(By.ID, 'sign_in_btnundefined').is_displayed()
+        sleep(0.5)
         driver.find_element(By.NAME, 'username').send_keys(locators.new_username)
         sleep(0.25)
         driver.find_element(By.NAME, 'password').send_keys(locators.new_password)
         sleep(0.25)
         driver.find_element(By.ID, 'sign_in_btnundefined').click()
-        sleep(0.25)
-        if driver.find_element(By.ID, 'signInResultMessage'):
-            print(f'The User "{locators.new_username}" has deleted! .')
+        sleep(1)
+        if driver.find_element(By.XPATH, '//label[contains(., "Incorrect")]'):
+            print(f'The User "{locators.new_username}" has been deleted! Test Passed!')
+            print('Test Scenario: Check the new user deleted --- is passed!')
 
     # breakpoint()
+
+
+
+
+
+
+
+
+
+
+
+
 
 # setUp()
 # create_new_user()

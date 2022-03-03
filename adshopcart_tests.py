@@ -11,6 +11,7 @@ class AdShopCartPositiveTestCase(unittest.TestCase):
         methods.create_new_user()
         methods.log_out()
         methods.log_in()
+        methods.check_user_created()
         methods.delete_a_new_user()
         methods.check_user_deleted()
         methods.tearDown()
